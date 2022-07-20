@@ -1,0 +1,118 @@
+package napster;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+import com.google.gson.Gson;
+
+public class NapsterServer {
+	
+	// HashMap com os peers inseridos no sistema
+	static HashMap<String, LinkedList<String>> peers;
+	
+	public class ThreadJoin extends Thread {
+		
+		private DatagramSocket serverSocket;
+		// private DatagramPacket recPkt;
+		//private NapsterMessage peer;
+		
+		public ThreadJoin(DatagramSocket serverSocket) {
+			
+			this.serverSocket = serverSocket;
+			this.recPkt = recPkt;
+			this.peer = peer;
+			
+		}
+		
+		public void run(NapsterMessage peer, DatagramPacket recPkt) {
+			try {
+				
+				byte[] sendBuf = new byte[1024];
+				sendBuf = "JOIN_OK".getBytes();
+				
+				InetAddress IPAddres = recPkt.getAddress();
+				int port = recPkt.getPort();
+				
+				String key = IPAddres.getHostAddress() +  ":" + String.valueOf(port);
+				peers.put(key, peer.getProperties());
+				
+				DatagramPacket sendPacket = new DatagramPacket(sendBuf, sendBuf.length, IPAddres, port);
+				serverSocket.send(sendPacket);
+				
+				System.out.println("Peer " + IPAddres.getHostAddress() + ":" + port + " adicionado com arquivos " + peers.get(IPAddres));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+			}
+			
+		}
+	}
+	
+	public class ThreadLeave extends Thread {
+		
+		private DatagramSocket serverSocket;
+		private DatagramPacket recPkt;
+		// private NapsterMessage peer;
+		
+		public ThreadLeave(DatagramSocket serverSocket, DatagramPacket recPkt) {
+			
+			this.serverSocket = serverSocket;
+			this.recPkt = recPkt;
+			// this.peer = peer;
+		}
+		
+		public void run(NapsterMessage peer) {
+			try {
+				
+				byte[] sendBuf = new byte[1024];
+				sendBuf = "LEAVE_OK".getBytes();
+				
+				InetAddress IPAddres = recPkt.getAddress();
+				int port = recPkt.getPort();
+				
+				String key = IPAddres.getHostAddress() +  ":" + String.valueOf(port);
+				
+				DatagramPacket sendPacket = new DatagramPacket(sendBuf, sendBuf.length, IPAddres, port);
+				
+				serverSocket.send(sendPacket);
+				
+				peers.remove(key);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				
+			}
+			
+			
+		}
+	}
+	
+	public static void main(String[] args) throws Exception {
+		
+		DatagramSocket serverSocket = new DatagramSocket(10098);
+		Gson gson = new Gson();
+		
+		ThreadJoin join = new ThreadJoin(serverSocket, recPkt);
+		
+		while (true) {
+			
+			byte[] recBuffer = new byte[1024];
+			
+			DatagramPacket recPkt = new DatagramPacket(recBuffer, recBuffer.length);
+			
+			serverSocket.receive(recPkt); // BLOCKING
+			
+			String informacao = new String(recPkt.getData(), recPkt.getOffset(), recPkt.getLength());
+			NapsterMessage peer = gson.fromJson(informacao, NapsterMessage.class);
+			
+			if (peer.getRequest().equals("JOIN")) {
+				
+				//ThreadJoin.run(serverSocket, peers, recPkt, peer);
+			}
+		}
+	}
+
+}

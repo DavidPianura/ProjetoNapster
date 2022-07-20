@@ -1,0 +1,7 @@
+INDEX VERSION 1.131+C:\Users\David\Documents\UFABC\2022.02\Sistemas Distribuídos\Projeto\TCP_UDP_Pratica\.metadata\.plugins\org.eclipse.jdt.core
+3306572792.index
+760091825.index
+3891348892.index
+1865797976.index
+3947583306.index
+2319678304.index

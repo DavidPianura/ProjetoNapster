@@ -1,0 +1,18 @@
+package napster;
+
+import java.util.LinkedList;
+
+public class NapsterMessage {
+	private static String request;
+	private static LinkedList<String> properties;
+	
+	public NapsterMessage(String request, LinkedList<String> properties) {
+		NapsterMessage.request = request;
+		NapsterMessage.properties = properties;
+	}
+
+	public static LinkedList<String> getProperties() {
+		return properties;
+	}
+	
+}

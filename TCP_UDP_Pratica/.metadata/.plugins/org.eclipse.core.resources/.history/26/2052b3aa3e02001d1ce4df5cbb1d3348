@@ -1,0 +1,64 @@
+package napster;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+import com.google.gson.Gson;
+
+public class NapsterServer {
+	
+	public class ThreadJoin extends Thread {
+		
+		public void run(DatagramSocket serverSocket, HashMap<InetAddress, LinkedList<String>> peers, DatagramPacket recPkt) {
+			try {
+				Gson gson = new Gson();
+				String informacao = new String(recPkt.getData(), recPkt.getOffset(), recPkt.getLength());
+				NapsterMessage peer = gson.fromJson(informacao, NapsterMessage.class);
+				peers.put(recPkt.getAddress(), peer.getProperties());
+				
+				byte[] sendBuf = new byte[1024];
+				sendBuf = "JOIN_OK".getBytes();
+				
+				InetAddress IPAddres = recPkt.getAddress();
+				int port = recPkt.getPort();
+				
+				DatagramPacket sendPacket = new DatagramPacket(sendBuf, sendBuf.length, IPAddres, port);
+				
+				serverSocket.send(sendPacket);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+			}
+			
+		}
+	}
+	
+	public static void main(String[] args) throws Exception {
+		DatagramSocket serverSocket = new DatagramSocket(10098);
+		HashMap<InetAddress, LinkedList<String>> peers = new HashMap<InetAddress, LinkedList<String>>();
+		
+		while (true) {
+			
+			byte[] recBuffer = new byte[1024];
+			
+			DatagramPacket recPkt = new DatagramPacket(recBuffer, recBuffer.length);
+			
+			System.out.println("Esperando alguma mensagem");
+			serverSocket.receive(recPkt); // BLOCKING
+		
+			
+			byte[] sendBuf = new byte[1024];
+			sendBuf = "JOIN_OK".getBytes();
+			
+			InetAddress IPAddres = recPkt.getAddress();
+			int port = recPkt.getPort();
+			
+			DatagramPacket sendPacket = new DatagramPacket(sendBuf, sendBuf.length, IPAddres, port);
+			serverSocket.send(sendPacket);
+		}
+	}
+
+}

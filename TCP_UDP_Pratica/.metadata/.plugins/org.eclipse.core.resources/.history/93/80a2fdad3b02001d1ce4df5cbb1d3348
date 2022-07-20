@@ -1,0 +1,27 @@
+package napster;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class NapsterMessage {
+	private String request;
+	private static LinkedList<String> properties;
+	
+	public NapsterMessage(String request, LinkedList<String> properties) {
+		this.setRequest(request);
+		this.properties = properties;
+	}
+
+	public static LinkedList<String> getProperties() {
+		return properties;
+	}
+
+	public String getRequest() {
+		return request;
+	}
+
+	public void setRequest(String request) {
+		this.request = request;
+	}
+	
+}
