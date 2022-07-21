@@ -33,15 +33,15 @@ public class NapsterServer {
 				sendBuf = "JOIN_OK".getBytes();
 				
 				InetAddress IPAddres = recPkt.getAddress();
-				int port = recPkt.getPort();
+				int peerPort = peer.getPort();
 				
-				String key = IPAddres.getHostAddress() +  ":" + String.valueOf(port);
+				String key = IPAddres.getHostAddress() +  ":" + peerPort;
 				peers.put(key, peer.getProperties());
 				
-				DatagramPacket sendPacket = new DatagramPacket(sendBuf, sendBuf.length, IPAddres, port);
+				DatagramPacket sendPacket = new DatagramPacket(sendBuf, sendBuf.length, IPAddres, recPkt.getPort());
 				serverSocket.send(sendPacket);
 				
-				System.out.println("Peer " + IPAddres.getHostAddress() + ":" + port + " adicionado com arquivos " + peers.get(key));
+				System.out.println("Peer " + IPAddres.getHostAddress() + ":" + peerPort + " adicionado com arquivos " + peers.get(key));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 			}
@@ -99,7 +99,7 @@ public class NapsterServer {
 				Gson gson = new Gson();
 				byte[] sendBuf = new byte[1024];
 				
-				System.out.println("Peer " + recPkt.getAddress().toString().replace("/", "") + ":" + recPkt.getPort() + " solicitou o arquivo " + peer.getProperties().get(0));
+				System.out.println("Peer " + recPkt.getAddress().toString().replace("/", "") + ":" + peer.getPort() + " solicitou o arquivo " + peer.getProperties().get(0));
 				
 				InetAddress IPAddres = recPkt.getAddress();
 				int port = recPkt.getPort();
