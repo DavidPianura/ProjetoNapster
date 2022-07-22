@@ -13,4 +13,7 @@
     <fullyQualifiedTypeName name="com.google.gson.Gson"/>
     <fullyQualifiedTypeName name="java.util.concurrent.TimeUnit"/>
     <fullyQualifiedTypeName name="java.util.concurrent.ThreadLocalRandom"/>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="napster.NapsterMessage"/>
+    <fullyQualifiedTypeName name="napster.NapsterServer.ThreadUpdate"/>
 </qualifiedTypeNameHistroy>

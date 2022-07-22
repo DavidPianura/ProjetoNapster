@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Enviando"/>
+		<item key="selection" value="equals"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="equals"/>
+			<item value="time"/>
+			<item value="timer"/>
+			<item value="wait"/>
+			<item value="split"/>
+			<item value="host"/>
+			<item value="[1]&apos;"/>
+			<item value="[1]"/>
+			<item value="IPAddres"/>
+			<item value="iterator"/>
+			<item value="aguarda"/>
 			<item value="enviando"/>
 			<item value="solicitou"/>
 			<item value="sou"/>
 			<item value="DatagramSocket"/>
-			<item value="Datagramdocket"/>
-			<item value="Datagram"/>
-			<item value="socket"/>
 		</list>
 		<list key="replacehistory">
 		</list>
