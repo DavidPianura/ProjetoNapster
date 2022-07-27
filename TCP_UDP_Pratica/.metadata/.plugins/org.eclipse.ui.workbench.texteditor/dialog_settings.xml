@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="equals"/>
+		<item key="selection" value="Thread"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="thread"/>
+			<item value="leave"/>
+			<item value="recebi"/>
+			<item value="sou o peer"/>
+			<item value="join"/>
+			<item value="peers_ports_udp"/>
+			<item value="NapsterMessage"/>
+			<item value="SEARCH"/>
+			<item value="search"/>
+			<item value="ALIVE_OK"/>
+			<item value="opcao"/>
+			<item value="update"/>
+			<item value="ThreadDownloadListener"/>
 			<item value="equals"/>
 			<item value="time"/>
-			<item value="timer"/>
-			<item value="wait"/>
-			<item value="split"/>
-			<item value="host"/>
-			<item value="[1]&apos;"/>
-			<item value="[1]"/>
-			<item value="IPAddres"/>
-			<item value="iterator"/>
-			<item value="aguarda"/>
-			<item value="enviando"/>
-			<item value="solicitou"/>
-			<item value="sou"/>
-			<item value="DatagramSocket"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1127"/>
-		<item key="DIALOG_Y_ORIGIN" value="467"/>
+		<item key="DIALOG_X_ORIGIN" value="39"/>
+		<item key="DIALOG_Y_ORIGIN" value="430"/>
 		<item key="DIALOG_WIDTH" value="322"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
-		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="353"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>
 	</section>
 </section>
